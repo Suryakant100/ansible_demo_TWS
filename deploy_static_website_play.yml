@@ -1,0 +1,19 @@
+-
+  name: Inatall Nginx and deploy static web page
+  hosts: prd
+  become: yes
+  tasks:
+    - name: Inatall Nginx
+      apt:
+        name: nginx
+        state: latest
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy web page
+      copy:
+        src: index.html
+        dest: /var/www/html      
